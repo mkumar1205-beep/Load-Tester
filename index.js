@@ -17,6 +17,23 @@ ws.on('open', () => {
   },1000); // send every 1 second 
 });
 
+const TIMEOUT_MS = 2000;
+let timeoutcount = 0;
+
+setInterval(() => {
+  const now = process.hrtime.bigint();
+  for (const msgid in pending) {
+    const start = pending[msgid];
+    const elapsed = Number(now - start) / 1e6;
+
+    if (elapsed > TIMEOUT_MS) {
+      console.log(`Message ID ${msgid} timed out after ${elapsed.toFixed(2)} ms`);
+      delete pending[msgid];
+      timeoutcount++;
+    }
+  }
+}, 500);
+
 ws.on('message', (data) => {
   let parsed;
 
@@ -35,6 +52,7 @@ ws.on('message', (data) => {
 
     console.log(`Received response for message ID ${id}:`, parsed.text);
     console.log("Latency:", latency.toFixed(2), "ms");
+    delete pending[id];
 
     //ws.close(); // close ONLY after correct response
   } else {
