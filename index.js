@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const metrics = require('./metrics');
 
 //env-based config
-const targetURL = process.env.targetURL || "wss://ws.ifelse.io";
+const targetURL = process.env.targetURL || "ws://localhost:9000";
 const numConnections = Number(process.env.numconnections || 5);
 const timeoutMS = Number(process.env.timeoutMS || 2000);
 const sendIntervalMS = Number(process.env.sendIntervalMS || 1000);

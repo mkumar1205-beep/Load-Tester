@@ -19,11 +19,13 @@ function metricsLogger() {
     const averageLatency = totallatency / totalmessages;
 
     const sorted = [...latencies].sort((a, b) => a - b);
-    const p95Index = Math.floor(0.95 * sorted.length - 1);
-    const p99Index = Math.floor(0.99 * sorted.length - 1);
-    const p95 = sorted[p95Index];
-    const p99 = sorted[p99Index];
-    
+    const p95Index = Math.floor(0.95 * sorted.length);
+    const p99Index = Math.floor(0.99 * sorted.length);
+    let p95 = sorted[Math.max(0, p95Index)];          // guard against negative
+    let p99 = sorted[Math.max(0, p99Index)];
+    p95 = sorted[p95Index];
+    p99 = sorted[p99Index];
+
     const intervalMS = 1000;
     const throughput = (totalmessages/intervalMS) * 1000;
 

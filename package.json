@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:light": "cross-env targetURL=ws://localhost:9000 numConnections=5 sendIntervalMS=1000 testDuration=20 node index.js",
+    "test:medium": "cross-env targetURL=ws://localhost:9000 numConnections=25 sendIntervalMS=500 testDuration=30 node index.js",
+    "test:heavy": "cross-env targetURL=ws://localhost:9000 numConnections=100 sendIntervalMS=200 testDuration=45 node index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +15,8 @@
   "type": "commonjs",
   "dependencies": {
     "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }
