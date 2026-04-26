@@ -107,6 +107,7 @@ setTimeout(() => {
   }
 
   setTimeout(() => {
+    console.log(metrics.printFinalReport());
     console.log("Test stopped.");
     process.exit(0);
   }, 1000);
