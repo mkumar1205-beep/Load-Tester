@@ -23,8 +23,9 @@ function metricsLogger() {
     const p99Index = Math.floor(0.99 * sorted.length - 1);
     const p95 = sorted[p95Index];
     const p99 = sorted[p99Index];
-
-    const throughput = totalmessages;
+    
+    const intervalMS = 1000;
+    const throughput = (totalmessages/intervalMS) * 1000;
 
     console.log("\nMETRICS:");
     console.log(`Throughput: ${throughput} msg/sec`);

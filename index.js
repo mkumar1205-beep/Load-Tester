@@ -26,7 +26,7 @@ let timeoutIntervalId = null;
 
 ws.on('open', () => {
   console.log(`Connection ${connId} connected`);
-  setIntervalId = setInterval(() => {
+  sendIntervalId = setInterval(() => {
     if (ws.readyState !== WebSocket.OPEN) return;
     msgid++;
     const message = JSON.stringify({ id : msgid, text: "Hello" });
