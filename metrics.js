@@ -75,21 +75,16 @@ function printFinalReport() {
   const max = sorted[sorted.length - 1];
   const timeoutRate = ((totalTimeouts / (totalMessages + totalTimeouts)) * 100).toFixed(1);
 
-  console.log("\n════════════════════════════════════════");
-  console.log("           FINAL REPORT                 ");
-  console.log("════════════════════════════════════════");
+  console.log("FINAL REPORT");
   console.log(`Duration         : ${durationSec}s`);
   console.log(`Total messages   : ${totalMessages.toLocaleString()}`);
   console.log(`Peak throughput  : ${peakThroughput} msg/sec`);
-  console.log(`────────────────────────────────────────`);
   console.log(`Avg latency      : ${avg.toFixed(2)}ms`);
   console.log(`p95 latency      : ${p95.toFixed(2)}ms`);
   console.log(`p99 latency      : ${p99.toFixed(2)}ms`);
   console.log(`Min latency      : ${min.toFixed(2)}ms`);
   console.log(`Max latency      : ${max.toFixed(2)}ms`);
-  console.log(`────────────────────────────────────────`);
   console.log(`Timeouts         : ${totalTimeouts} (${timeoutRate}%)`);
-  console.log("════════════════════════════════════════\n");
 }
 
 module.exports = {
